@@ -872,7 +872,7 @@ local has_xray = api.is_finded("xray")
 				}
 
 				if (queryParam.security == "xtls") {
-					opt.set('tls', true);
+					opt.set('tls', false);
 					opt.set('xtls',true)
 					opt.set('flow', queryParam.flow || "xtls-rprx-direct");
 					opt.set('tls_serverName', queryParam.sni || '');
