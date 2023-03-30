@@ -529,7 +529,7 @@ tlsflow:depends("tls", true)
 
 xtls = s:option(Flag, "xtls", translate("XTLS"))
 xtls.default = 0
-xtls:depends({ type = "Xray", protocol = "vless", tls = false })
+xtls:depends({ type = "Xray", protocol = "vless", tls = true })
 xtls:depends({ type = "Xray", protocol = "trojan", tls = true })
 
 flow = s:option(Value, "flow", translate("flow"))
@@ -585,15 +585,6 @@ tls_allowInsecure = s:option(Flag, "tls_allowInsecure", translate("allowInsecure
 tls_allowInsecure.default = "0"
 tls_allowInsecure:depends("tls", true)
 tls_allowInsecure:depends("type", "Hysteria")
-
-xtls_serverName = s:option(Value, "tls_serverName", translate("Domain"))
-xtls_serverName:depends("tls", true)
-xtls_serverName:depends("type", "Hysteria")
-
-xtls_allowInsecure = s:option(Flag, "tls_allowInsecure", translate("allowInsecure"), translate("Whether unsafe connections are allowed. When checked, Certificate validation will be skipped."))
-xtls_allowInsecure.default = "0"
-xtls_allowInsecure:depends("tls", true)
-xtls_allowInsecure:depends("type", "Hysteria")
 
 xray_fingerprint = s:option(Value, "xray_fingerprint", translate("Finger Print"))
 xray_fingerprint:value("", translate("Disable"))
