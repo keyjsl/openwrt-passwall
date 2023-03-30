@@ -586,6 +586,15 @@ tls_allowInsecure.default = "0"
 tls_allowInsecure:depends("tls", true)
 tls_allowInsecure:depends("type", "Hysteria")
 
+xtls_serverName = s:option(Value, "tls_serverName", translate("Domain"))
+xtls_serverName:depends("tls", true)
+xtls_serverName:depends("type", "Hysteria")
+
+xtls_allowInsecure = s:option(Flag, "tls_allowInsecure", translate("allowInsecure"), translate("Whether unsafe connections are allowed. When checked, Certificate validation will be skipped."))
+xtls_allowInsecure.default = "0"
+xtls_allowInsecure:depends("tls", true)
+xtls_allowInsecure:depends("type", "Hysteria")
+
 xray_fingerprint = s:option(Value, "xray_fingerprint", translate("Finger Print"))
 xray_fingerprint:value("", translate("Disable"))
 xray_fingerprint:value("chrome")
