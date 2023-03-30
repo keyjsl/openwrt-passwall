@@ -521,13 +521,6 @@ tls:depends("type", "Trojan")
 tls:depends("type", "Trojan-Plus")
 tls:depends("type", "Trojan-Go")
 
-tlsflow = s:option(Value, "tlsflow", translate("tlsflow"))
-tlsflow.default = "xtls-rprx-vision"
-tlsflow.value("none")
-tlsflow:value("xtls-rprx-vision")
-tlsflow:value("xtls-rprx-vision-udp443")
-tlsflow:depends("tls", true)
-
 xtls = s:option(Flag, "xtls", translate("XTLS"))
 xtls.default = 0
 xtls:depends({ type = "Xray", protocol = "vless", tls = false })
@@ -542,6 +535,12 @@ flow:value("xtls-rprx-direct-udp443")
 flow:value("xtls-rprx-splice")
 flow:value("xtls-rprx-splice-udp443")
 flow:depends("xtls", true)
+
+tlsflow = s:option(Value, "tlsflow", translate("tlsflow"))
+tlsflow.default = "xtls-rprx-vision"
+tlsflow:value("xtls-rprx-vision")
+tlsflow:value("xtls-rprx-vision-udp443")
+tlsflow:depends("tls", true)
 
 alpn = s:option(ListValue, "alpn", translate("alpn"))
 alpn.default = "default"
