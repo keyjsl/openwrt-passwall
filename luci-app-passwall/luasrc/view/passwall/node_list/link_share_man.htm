@@ -286,7 +286,7 @@ local has_xray = api.is_finded("xray")
 			
 			params += opt.query("encryption", "encryption");
 
-			if (opt.get("tls").checked) {
+			if (opt.get("vtls").checked) {
 					var v_security = "tls";
 					var v_flow = "xtls-rprx-vision";
 					if (opt.get("tlsflow").value) {
@@ -862,6 +862,7 @@ local has_xray = api.is_finded("xray")
 			if (queryParam.security) {
 				if (queryParam.security == "tls") {
 					opt.set('tls', true);
+					opt.set('vtls',true)
 					opt.set('xtls',false)
 					opt.set('flow', queryParam.tlsflow || "xtls-rprx-vision");
 					opt.set('tls_serverName', queryParam.sni || '');
@@ -872,7 +873,8 @@ local has_xray = api.is_finded("xray")
 				}
 
 				if (queryParam.security == "xtls") {
-					opt.set('tls', false);
+					opt.set('tls', true);
+					opt.set('vtls',false)
 					opt.set('xtls',true)
 					opt.set('flow', queryParam.flow || "xtls-rprx-direct");
 					opt.set('tls_serverName', queryParam.sni || '');
