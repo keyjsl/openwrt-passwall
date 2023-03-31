@@ -534,13 +534,21 @@ flow:value("xtls-rprx-direct")
 flow:value("xtls-rprx-direct-udp443")
 flow:value("xtls-rprx-splice")
 flow:value("xtls-rprx-splice-udp443")
-flow:value("xtls-rprx-vision")
-flow:value("xtls-rprx-vision-udp443")
 flow:depends("xtls", true)
+
+vtls = s:option(Flag, "vtls", translate("vTLS"))
+vtls.default = 0
+vtls:depends({ type = "Xray", protocol = "vless", tls = true })
+vtls:depends({ type = "Xray", protocol = "trojan", tls = true })
+
+tlsflow = s:option(Value, "tlsflow", translate("tlsflow"))
+tlsflow.default = "xtls-rprx-vision"
+tlsflow:value("xtls-rprx-vision")
+tlsflow:value("xtls-rprx-vision-udp443")
+tlsflow:depends("vtls", true)
 
 alpn = s:option(ListValue, "alpn", translate("alpn"))
 alpn.default = "default"
-alpn:value("none")
 alpn:value("default", translate("Default"))
 alpn:value("h2,http/1.1")
 alpn:value("h2")
