@@ -528,8 +528,6 @@ xtls:depends({ type = "Xray", protocol = "trojan", tls = true })
 
 flow = s:option(Value, "flow", translate("flow"))
 flow.default = "xtls-rprx-direct"
-if queryParam.flow == "xtls-rprx-vision"
-    flow.default = "xtls-rprx-vision"
 flow:value("xtls-rprx-origin")
 flow:value("xtls-rprx-origin-udp443")
 flow:value("xtls-rprx-direct")
