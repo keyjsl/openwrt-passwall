@@ -583,13 +583,22 @@ function trojan_go_fingerprint.write(self, section, value)
 end
 
 tls_serverName = s:option(Value, "tls_serverName", translate("Domain"))
---tls_serverName:depends("tls", true)
+tls_serverName:depends("tls", true)
 tls_serverName:depends("type", "Hysteria")
 
 tls_allowInsecure = s:option(Flag, "tls_allowInsecure", translate("allowInsecure"), translate("Whether unsafe connections are allowed. When checked, Certificate validation will be skipped."))
 tls_allowInsecure.default = "0"
---tls_allowInsecure:depends("tls", true)
+tls_allowInsecure:depends("tls", true)
 tls_allowInsecure:depends("type", "Hysteria")
+
+xtls_serverName = s:option(Value, "xtls_serverName", translate("xDomain"))
+xtls_serverName:depends("xtls", true)
+xtls_serverName:depends("type", "Hysteria")
+
+xtls_allowInsecure = s:option(Flag, "xtls_allowInsecure", translate("xallowInsecure"), translate("Whether unsafe connections are allowed. When checked, Certificate validation will be skipped."))
+xtls_allowInsecure.default = "0"
+xtls_allowInsecure:depends("xtls", true)
+xtls_allowInsecure:depends("type", "Hysteria")
 
 xray_fingerprint = s:option(Value, "xray_fingerprint", translate("Finger Print"))
 xray_fingerprint:value("", translate("Disable"))
