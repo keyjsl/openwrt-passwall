@@ -526,15 +526,20 @@ tls.default = 0
 tls:depends({ type = "Xray", protocol = "vless", tls = true })
 tls:depends({ type = "Xray", protocol = "trojan", tls = true })
 
+utls = s:option(Flag, "utls", translate("uTLS"))
+utls.default = 0
+utls:depends({ type = "Xray", protocol = "vless", tls = true })
+utls:depends({ type = "Xray", protocol = "trojan", tls = true })
+
 tlsflow = s:option(Value, "tlsflow", translate("tlsflow"))
 tlsflow.default = "xtls-rprx-vision"
 tlsflow:value("xtls-rprx-vision")
 tlsflow:value("xtls-rprx-vision-udp443")
-tlsflow:depends("tls", true)
+tlsflow:depends("utls", true)
 
 xtls = s:option(Flag, "xtls", translate("XTLS"))
 xtls.default = 0
-xtls:depends({ type = "Xray", protocol = "vless", tls = false })
+xtls:depends({ type = "Xray", protocol = "vless", tls = true })
 xtls:depends({ type = "Xray", protocol = "trojan", tls = true })
 
 flow = s:option(Value, "flow", translate("flow"))
@@ -556,10 +561,10 @@ alpn:value("http/1.1")
 alpn:depends({ type = "V2ray", tls = true })
 alpn:depends({ type = "Xray", tls = true })
 
--- minversion = s:option(Value, "minversion", translate("minversion"))
--- minversion.default = "1.3"
--- minversion:value("1.3")
--- minversion:depends("tls", true)
+minversion = s:option(Value, "minversion", translate("minversion"))
+minversion.default = "1.3"
+minversion:value("1.3")
+minversion:depends("tls", true)
 
 -- [[ TLS部分 ]] --
 tls_sessionTicket = s:option(Flag, "tls_sessionTicket", translate("Session Ticket"))
@@ -584,13 +589,11 @@ end
 
 tls_serverName = s:option(Value, "tls_serverName", translate("Domain"))
 tls_serverName:depends("tls", true)
-tls_serverName:depends("xtls", true)
 tls_serverName:depends("type", "Hysteria")
 
 tls_allowInsecure = s:option(Flag, "tls_allowInsecure", translate("allowInsecure"), translate("Whether unsafe connections are allowed. When checked, Certificate validation will be skipped."))
 tls_allowInsecure.default = "0"
 tls_allowInsecure:depends("tls", true)
-tls_allowInsecure:depends("xtls", true)
 tls_allowInsecure:depends("type", "Hysteria")
 
 xray_fingerprint = s:option(Value, "xray_fingerprint", translate("Finger Print"))
