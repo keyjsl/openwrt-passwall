@@ -860,7 +860,7 @@ local has_xray = api.is_finded("xray")
 			
 			opt.set('encryption', queryParam.encryption);
 			if (queryParam.security) {
-				if (queryParam.security == "tls") {
+				if (queryParam.security == "utls") {
 					opt.set('tls', true);
 					opt.set('utls',true)
 					opt.set('flow', queryParam.tlsflow || "xtls-rprx-vision");
