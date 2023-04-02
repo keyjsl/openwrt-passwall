@@ -521,11 +521,6 @@ tls:depends("type", "Trojan")
 tls:depends("type", "Trojan-Plus")
 tls:depends("type", "Trojan-Go")
 
-tls = s:option(Flag, "tls", translate("TLS"))
-tls.default = 0
-tls:depends({ type = "Xray", protocol = "vless", tls = true })
-tls:depends({ type = "Xray", protocol = "trojan", tls = true })
-
 utls = s:option(Flag, "utls", translate("uTLS"))
 utls.default = 0
 utls:depends({ type = "Xray", protocol = "vless", tls = true })
@@ -561,10 +556,10 @@ alpn:value("http/1.1")
 alpn:depends({ type = "V2ray", tls = true })
 alpn:depends({ type = "Xray", tls = true })
 
-minversion = s:option(Value, "minversion", translate("minversion"))
-minversion.default = "1.3"
-minversion:value("1.3")
-minversion:depends("tls", true)
+--minversion = s:option(Value, "minversion", translate("minversion"))
+--minversion.default = "1.3"
+--minversion:value("1.3")
+--minversion:depends("tls", true)
 
 -- [[ TLS部分 ]] --
 tls_sessionTicket = s:option(Flag, "tls_sessionTicket", translate("Session Ticket"))
