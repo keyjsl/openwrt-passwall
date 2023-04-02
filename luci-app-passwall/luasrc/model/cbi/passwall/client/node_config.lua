@@ -523,7 +523,7 @@ tls:depends("type", "Trojan-Go")
 
 xtls = s:option(Flag, "xtls", translate("XTLS"))
 xtls.default = 0
-xtls:depends({ type = "Xray", protocol = "vless", tls = true })
+xtls:depends({ type = "Xray", protocol = "vless", tls = false })
 xtls:depends({ type = "Xray", protocol = "trojan", tls = true })
 
 flow = s:option(Value, "flow", translate("flow"))
@@ -536,16 +536,16 @@ flow:value("xtls-rprx-splice")
 flow:value("xtls-rprx-splice-udp443")
 flow:depends("xtls", true)
 
-vtls = s:option(Flag, "vtls", translate("vTLS"))
-vtls.default = 0
-vtls:depends({ type = "Xray", protocol = "vless", tls = true })
-vtls:depends({ type = "Xray", protocol = "trojan", tls = true })
+tls = s:option(Flag, "tls", translate("TLS"))
+tls.default = 0
+tls:depends({ type = "Xray", protocol = "vless", tls = true })
+tls:depends({ type = "Xray", protocol = "trojan", tls = true })
 
 tlsflow = s:option(Value, "tlsflow", translate("tlsflow"))
 tlsflow.default = "xtls-rprx-vision"
 tlsflow:value("xtls-rprx-vision")
 tlsflow:value("xtls-rprx-vision-udp443")
-tlsflow:depends("vtls", true)
+tlsflow:depends("tls", true)
 
 alpn = s:option(ListValue, "alpn", translate("alpn"))
 alpn.default = "default"
@@ -583,12 +583,12 @@ function trojan_go_fingerprint.write(self, section, value)
 end
 
 tls_serverName = s:option(Value, "tls_serverName", translate("Domain"))
-tls_serverName:depends("tls", true)
+--tls_serverName:depends("tls", true)
 tls_serverName:depends("type", "Hysteria")
 
 tls_allowInsecure = s:option(Flag, "tls_allowInsecure", translate("allowInsecure"), translate("Whether unsafe connections are allowed. When checked, Certificate validation will be skipped."))
 tls_allowInsecure.default = "0"
-tls_allowInsecure:depends("tls", true)
+--tls_allowInsecure:depends("tls", true)
 tls_allowInsecure:depends("type", "Hysteria")
 
 xray_fingerprint = s:option(Value, "xray_fingerprint", translate("Finger Print"))
