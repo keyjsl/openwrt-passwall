@@ -555,6 +555,7 @@ alpn:value("h2")
 alpn:value("http/1.1")
 alpn:depends({ type = "V2ray", tls = true })
 alpn:depends({ type = "Xray", tls = true })
+alpn:depends({ type = "Xray", xtls = true })
 
 -- minversion = s:option(Value, "minversion", translate("minversion"))
 -- minversion.default = "1.3"
